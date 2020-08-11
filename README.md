@@ -104,3 +104,5 @@ val postsRecyclerView: RecyclerView = findViewById(R.id.postsRecyclerView)
         postsRecyclerView.adapter = PostsAdapter(this, postItems)
 ```
 ### Screenshots
+![Screen Shot 1](https://github.com/martinapinky/staggered-grid/blob/master/app/src/main/res/drawable/screenshot_1.png?raw=true)
+![Screen Shot 2](https://github.com/martinapinky/staggered-grid/blob/master/app/src/main/res/drawable/screenshot_2.png?raw=true)
