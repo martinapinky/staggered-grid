@@ -2,6 +2,7 @@
 Android RecyclerView with Staggered Grid Layout Manager Example
 
 # Getting Started
+Create a new Android Studio project with the empty activity template.
 Add the following dependency to your `build.gradle` file:
 ```
 dependencies {
@@ -9,7 +10,7 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
 }
 ```
-# XML
+## XML
 Add the following to your `activity_main.xml` file:
 ```
 <androidx.recyclerview.widget.RecyclerView
@@ -35,3 +36,71 @@ Create an XML file named `post_item_container.xml` with the following:
     android:adjustViewBounds="true"
     app:riv_corner_radius="12dp">
 </com.makeramen.roundedimageview.RoundedImageView>
+```
+## Kotlin
+Create a data class called `PostItem.kt` with the following:
+```
+data class PostItem(var image: Int)
+```
+Create a RecyclerView Adapter called `Posts Adapter` with the following:
+```
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.makeramen.roundedimageview.RoundedImageView
+
+class PostsAdapter internal constructor(
+    private val context: Context,
+    private val postItems: List<PostItem>
+) :
+    RecyclerView.Adapter<PostsAdapter.ListViewHolder>() {
+
+    private val inflater: LayoutInflater = LayoutInflater.from(context)
+
+    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val postImageView: RoundedImageView = itemView.findViewById(R.id.imagePost)
+
+        fun setPostImage(postItem: PostItem) {
+            postImageView.setImageResource(postItem.image)
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
+        val itemView = inflater.inflate(R.layout.post_item_container, parent, false)
+        return ListViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        holder.setPostImage(postItems[position])
+    }
+
+    override fun getItemCount(): Int {
+        return postItems.size
+    }
+
+
+}
+```
+Add the following to your `MainActivity.kt` file:
+```
+val postsRecyclerView: RecyclerView = findViewById(R.id.postsRecyclerView)
+        postsRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        val postItems: MutableList<PostItem> = mutableListOf()
+        postItems.add(PostItem(R.drawable.leeminho))
+        postItems.add(PostItem(R.drawable.leejongsuk))
+        postItems.add(PostItem(R.drawable.chaeunwoo))
+        postItems.add(PostItem(R.drawable.seokangjoon))
+        postItems.add(PostItem(R.drawable.kimsoohyun))
+        postItems.add(PostItem(R.drawable.parkseojoon))
+        postItems.add(PostItem(R.drawable.seoinguk))
+        postItems.add(PostItem(R.drawable.jichangwook))
+        postItems.add(PostItem(R.drawable.yooseungho))
+        postItems.add(PostItem(R.drawable.leeseunggi))
+
+        postsRecyclerView.adapter = PostsAdapter(this, postItems)
+```
+### Screenshots
