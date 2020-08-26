@@ -68,9 +68,9 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
             object : SelectionTracker.SelectionObserver<Long>() {
                 override fun onSelectionChanged() {
                     super.onSelectionChanged()
-                    selectedPostItems.remove(PostItem("", 1))
                     tracker?.let {
                         selectedPostItems = it.selection.toMutableList()
+                        selectedPostItems.remove(PostItem("", 1))
                         if (selectedPostItems.isEmpty() && selectedPostItems2.isEmpty()) {
                             actionMode?.finish()
                         } else {
@@ -104,9 +104,9 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
             object : SelectionTracker.SelectionObserver<Long>() {
                 override fun onSelectionChanged() {
                     super.onSelectionChanged()
-                    selectedPostItems2.remove(PostItem("", 1))
                     tracker2?.let {
                         selectedPostItems2 = it.selection.toMutableList()
+                        selectedPostItems2.remove(PostItem("", 1))
                         if (selectedPostItems2.isEmpty() && selectedPostItems.isEmpty()) {
                             actionMode?.finish()
                         } else {
