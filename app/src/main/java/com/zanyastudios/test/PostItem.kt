@@ -1,4 +1,8 @@
 package com.zanyastudios.test
 
-data class PostItem(var image: Int)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class PostItem(val name: String?, val image: Int) : Parcelable
 

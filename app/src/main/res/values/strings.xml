@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Staggered Grid Layout</string>
+    <string name="view_list">View list</string>
+    <string name="others">OTHERS</string>
 </resources>
