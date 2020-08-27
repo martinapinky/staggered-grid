@@ -73,8 +73,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
                         selectedPostItems.remove(PostItem("", 1))
                         if (selectedPostItems.isEmpty() && selectedPostItems2.isEmpty()) {
                             actionMode?.finish()
-                            adapter.tracker?.clearSelection()
-                            adapter2.tracker?.clearSelection()
                         } else {
                             if (actionMode == null) actionMode =
                                 startSupportActionMode(this@MainActivity)
@@ -111,8 +109,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
                         selectedPostItems2.remove(PostItem("", 1))
                         if (selectedPostItems2.isEmpty() && selectedPostItems.isEmpty()) {
                             actionMode?.finish()
-                            adapter.tracker?.clearSelection()
-                            adapter2.tracker?.clearSelection()
                         } else {
                             if (actionMode == null) actionMode =
                                 startSupportActionMode(this@MainActivity)
@@ -161,12 +157,10 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback {
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
-        if (selectedPostItems.size > 0 || selectedPostItems2.size > 0) {
-            adapter.tracker?.clearSelection()
-            adapter.notifyDataSetChanged()
-            adapter2.tracker?.clearSelection()
-            adapter2.notifyDataSetChanged()
-        }
+        adapter.tracker?.clearSelection()
+        adapter.notifyDataSetChanged()
+        adapter2.tracker?.clearSelection()
+        adapter2.notifyDataSetChanged()
         actionMode = null
     }
 }
