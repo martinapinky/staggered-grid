@@ -30,6 +30,10 @@ class PostsAdapter internal constructor(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.setPostImage(postItems[position])
+//         On Item Click action
+        holder.postImageView.setOnClickListener {
+                Toast.makeText(context.applicationContext,position.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
